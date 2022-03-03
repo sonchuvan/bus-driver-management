@@ -12,5 +12,13 @@ public class MainRun {
         List<Driver> drivers = driverDAOImp.getAll();
 
         drivers.forEach(driver -> System.out.println(driver));
+
+        Driver driver = new Driver("abc","abc","012345","A");
+
+//        if(driverDAOImp.addNew(driver)){
+//            System.out.println("oke");
+//        }
+//        else System.out.println("False");
+
     }
 }

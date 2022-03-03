@@ -1,9 +1,6 @@
 package bean;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
@@ -35,4 +32,24 @@ public class Driver extends Person implements Serializable {
     public static final String F = "F";
     @Column(name = "driver_level")
     String level;
+
+    public Driver(int id){
+        this.driverId = id;
+    }
+
+    public Driver(String fullName, String address, String phone, String level) {
+        super(fullName, address, phone);
+        this.level = level;
+    }
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "driverId=" + driverId +
+                ", level='" + level + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }

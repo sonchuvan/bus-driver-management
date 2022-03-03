@@ -6,13 +6,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
 @MappedSuperclass
-public class Person {
+public class Person implements Serializable {
 
     @Column(name = "driver_name")
     protected String fullName;
