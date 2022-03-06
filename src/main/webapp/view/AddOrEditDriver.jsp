@@ -28,9 +28,11 @@
           <form:label path="level">Level: </form:label>
           <form:select path="level">
             <form:option value="0" label="Select"/>
-            <%--    levelList này được lấy ngay tại HelloController, hàm getCountryList()    --%>
+            <%--    levelList này được lấy ngay tại HelloController, hàm getLevelList()    --%>
             <form:options items="${levelList}"/>
           </form:select>
+          <br/>
+          <br/>
           <form:button type="submit">Submit</form:button>
         </form:form>
     </body>

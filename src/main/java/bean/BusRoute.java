@@ -24,9 +24,13 @@ public class BusRoute implements Serializable {
     public static int COUNT;
     @Id
     @Column(name = "bus_route_id")
-    private int routeID;
+    int busRouteId;
     @Column(name = "bus_route_range")
-    private float range;
+    float range;
     @Column(name = "bus_route_stop_number")
-    private int numberOfStops;
+    int numberOfStops;
+
+    public BusRoute(int id){
+        this.busRouteId = id;
+    }
 }

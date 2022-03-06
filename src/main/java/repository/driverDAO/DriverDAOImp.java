@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import repository.HibernateUtil;
 
 import java.util.List;
+import java.util.Locale;
 
 @Repository
 public class DriverDAOImp implements DriverDAO {
@@ -19,6 +20,22 @@ public class DriverDAOImp implements DriverDAO {
             session.getTransaction().commit();
             return drivers;
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Driver> search(String search) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            Query<Driver> query = session.createQuery("select d from Driver d where lower(d.fullName) like :p_search or lower(d.address) like :p_search or lower(d.phone) like :p_search or lower(d.level) like :p_search");
+            query.setParameter("p_search","%"+search.toLowerCase(Locale.ROOT)+"%");
+            List<Driver> drivers = query.list();
+
+            session.getTransaction().commit();
+            return drivers;
+        }catch (Exception e) {
             e.printStackTrace();
         }
         return null;

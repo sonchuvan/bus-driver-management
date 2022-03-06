@@ -4,11 +4,14 @@
 <html>
 <head>
   <title>Bus Driver Management</title>
+  <script src="<c:url value="/view/js/driver.js" />"></script>
 </head>
 <body>
 <h2>Driver Management</h2>
-<h3>Menu</h3>
 <a href="/Bus-driver-management/driver/add">add New</a>
+<input type="text" id="search"/>
+
+<input type="button" value="Search" onclick="search();"/>
     <table border="1">
             <tr>
                 <td>DriverId</td>

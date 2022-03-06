@@ -41,6 +41,7 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.9.Final</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>

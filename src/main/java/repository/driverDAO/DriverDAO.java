@@ -7,6 +7,8 @@ import java.util.List;
 public interface DriverDAO {
     List<Driver> getAll();
 
+    List<Driver> search(String search);
+
     Driver getById(int id);
 
     boolean addNew(Driver driver);

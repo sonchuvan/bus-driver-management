@@ -28,6 +28,27 @@ public class DriverController {
         modelAndView.addObject("object",driverService.getAllDriver());
         return modelAndView;
     }
+
+    @RequestMapping(value = "/driver/search", method = RequestMethod.GET)
+    public ModelAndView searchDriver(@RequestParam String search){
+        ModelAndView modelAndView = new ModelAndView("view/DriverView");
+        modelAndView.addObject("object",driverService.searchDriver(search));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/driver/addOrEdit",method = RequestMethod.POST)
+    public String addDriver(@ModelAttribute("driver") Driver driver, ModelMap modelMap){
+        if(driverService.getById(driver.getDriverId())==null){
+            driverService.addNewDriver(driver);
+            System.out.println("add new");
+        }
+        else {
+            driverService.updateDriver(driver);
+            System.out.println("update");
+        }
+        return "redirect:../driver";
+    }
+
     @RequestMapping(value = "/driver/add",method = RequestMethod.GET)
     public ModelAndView addOrEdit(){
         ModelAndView modelAndView = new ModelAndView("view/AddOrEditDriver","command",new Driver(driverService.getMaxId()));
@@ -35,19 +56,9 @@ public class DriverController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/driver/addOrEdit",method = RequestMethod.POST,produces = "application/x-www-form-urlencoded;charset=UTF-8")
-    public String addDriver(@ModelAttribute("driver") Driver driver, ModelMap modelMap){
-        driver.setDriverId(driverService.getMaxId());
-        System.out.println(driverService.addNewDriver(driver));
-        System.out.println(driver);
-        return "redirect:../driver";
-    }
-
     @RequestMapping(value = "/driver/edit",method = RequestMethod.GET)
     public ModelAndView editDriver(@RequestParam int id){
-        Driver driver = driverService.getById(id);
-        driverService.updateDriver(driver);
-        ModelAndView modelAndView = new ModelAndView("view/AddOrEditDriver","command",driver);
+        ModelAndView modelAndView = new ModelAndView("view/AddOrEditDriver","command",driverService.getById(id));
         modelAndView.addObject("id",id);
         modelAndView.addObject("status","Edit driver");
         return modelAndView;
@@ -55,21 +66,13 @@ public class DriverController {
 
     @RequestMapping(value = "/driver/delete",method = RequestMethod.GET)
     public String deleteDriver(@RequestParam int id){
-        Driver driver = driverService.getById(id);
-        System.out.println(driverService.deleteDriver(driver));
+        driverService.deleteDriver(driverService.getById(id));
         return "redirect:../driver";
     }
 
     @ModelAttribute("levelList")
     public Map<String, String> getLevelList(){
-        Map<String, String> countryList = new HashMap<>();
-        countryList.put(Driver.A,"A");
-        countryList.put(Driver.B,"B");
-        countryList.put(Driver.C,"C");
-        countryList.put(Driver.D,"D");
-        countryList.put(Driver.E,"E");
-        countryList.put(Driver.F,"F");
-        return countryList;
+        return driverService.getLevelList();
     }
 
 }
