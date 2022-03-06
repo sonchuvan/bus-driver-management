@@ -24,8 +24,8 @@
                     <td>${obj.driver.driverId}</td>
                     <td>${obj.busRoute.busRouteId}</td>
                     <td>${obj.routeQuantity}</td>
-                    <td><a href="/Bus-driver-management/roster/edit?id=${obj.driver.driverId}">Edit</a></td>
-                    <td><a href="/Bus-driver-management/roster/delete?id=${obj.driver.driverId}">Delete</a></td>
+                    <td><a href="/Bus-driver-management/roster/edit?driverId=${obj.driver.driverId}&busRouteId=${obj.busRoute.busRouteId}">Edit</a></td>
+                    <td><a href="/Bus-driver-management/roster/delete?driverId=${obj.driver.driverId}&busRouteId=${obj.busRoute.busRouteId}">Delete</a></td>
                 </tr>
             </c:forEach>
 </body>

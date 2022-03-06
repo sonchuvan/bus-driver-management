@@ -122,7 +122,7 @@ public class RosterDAOImp implements RosterDAO{
     }
 
     @Override
-    public Roster getBusRouteFromRoster(Driver driver, BusRoute busRoute) {
+    public Roster getRoster(Driver driver, BusRoute busRoute) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             Query<Roster> query = session.createQuery("Select r from Roster r where r.driver= :p_driver and r.busRoute = :p_busRoute");
@@ -136,4 +136,32 @@ public class RosterDAOImp implements RosterDAO{
         }
         return null;
     }
+
+    @Override
+    public List<Integer> getDriverIdList() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            Query<Integer> query = session.createQuery("select driverId from Driver");
+            List<Integer> driverIdList = query.list();
+            return driverIdList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Integer> getBusRouteIdList() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            Query<Integer> query = session.createQuery("select busRouteId from BusRoute");
+            List<Integer> driverIdList = query.list();
+            return driverIdList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

@@ -24,5 +24,9 @@ public interface RosterDAO {
 
     long totalRouteQuantity(Driver driver);
 
-    Roster getBusRouteFromRoster(Driver driver, BusRoute busRoute);
+    Roster getRoster(Driver driver, BusRoute busRoute);
+
+    List<Integer> getDriverIdList();
+
+    List<Integer> getBusRouteIdList();
 }

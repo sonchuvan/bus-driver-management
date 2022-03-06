@@ -9,12 +9,18 @@
     <body>
         <h2>${status}</h2>
         <form:form action="./addOrEditRoster" method="POST">
-          <form:label path="driver.driverId">Driver Id: </form:label>
-          <form:input path="driver.driverId"/>
+            <form:label path="driver.driverId">Driver Id </form:label>
+              <form:select path="driver.driverId">
+                <form:option value="0" label="Select driver id"/>
+                <form:options items="${driverIdList}"/>
+              </form:select>
           <br/>
           <br/>
-          <form:label path="busRoute.busRouteId">Bus Route Id:</form:label>
-          <form:input path="busRoute.busRouteId"/>
+          <form:label path="busRoute.busRouteId">BusRoute Id </form:label>
+            <form:select path="busRoute.busRouteId">
+              <form:option value="0" label="Select busRoute id"/>
+              <form:options items="${busRouteIdList}"/>
+            </form:select>
           <br/>
           <br/>
           <form:label path="routeQuantity">Route Quantity:</form:label>

@@ -1,5 +1,7 @@
 package service;
 
+import bean.BusRoute;
+import bean.Driver;
 import bean.roster.Roster;
 import controller.RosterController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +18,25 @@ public class RosterService {
 
     public List<Roster> getAllRoster(){
         return rosterDAOImp.getAll();
+    }
+
+    public List<Integer> getDriverIdList(){
+        return rosterDAOImp.getDriverIdList();
+    }
+
+    public List<Integer> getBusRouteIdList(){
+        return rosterDAOImp.getBusRouteIdList();
+    }
+
+    public Roster getRoster(Driver driver, BusRoute busRoute){
+        return rosterDAOImp.getRoster(driver,busRoute);
+    }
+
+    public boolean saveRoster(Roster roster){
+        return rosterDAOImp.addNew(roster);
+    }
+
+    public boolean deleteRoster(Roster roster){
+        return rosterDAOImp.delete(roster);
     }
 }

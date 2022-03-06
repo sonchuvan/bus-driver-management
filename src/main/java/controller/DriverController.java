@@ -2,7 +2,6 @@ package controller;
 
 import bean.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import service.DriverService;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -37,7 +35,7 @@ public class DriverController {
     }
 
     @RequestMapping(value = "/driver/addOrEdit",method = RequestMethod.POST)
-    public String addDriver(@ModelAttribute("driver") Driver driver, ModelMap modelMap){
+    public String addOrEditDriver(@ModelAttribute("driver") Driver driver, ModelMap modelMap){
         if(driverService.getById(driver.getDriverId())==null){
             driverService.addNewDriver(driver);
             System.out.println("add new");
@@ -50,7 +48,7 @@ public class DriverController {
     }
 
     @RequestMapping(value = "/driver/add",method = RequestMethod.GET)
-    public ModelAndView addOrEdit(){
+    public ModelAndView addDriver(){
         ModelAndView modelAndView = new ModelAndView("view/AddOrEditDriver","command",new Driver(driverService.getMaxId()));
         modelAndView.addObject("status","Add new driver");
         return modelAndView;
