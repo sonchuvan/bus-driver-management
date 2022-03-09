@@ -15,6 +15,7 @@ import service.BusRouteService;
 import service.DriverService;
 import service.RosterService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -42,7 +43,11 @@ public class RosterController {
         BusRoute busRoute = busRouteService.getById(roster.getBusRoute().getBusRouteId());
         roster.setDriver(driver);
         roster.setBusRoute(busRoute);
-        rosterService.saveRoster(roster);
+        if(rosterService.getRoster(driver,busRoute) != null){
+            rosterService.updateRoster(roster);
+        }else{
+            rosterService.saveRoster(roster);
+        }
         return "redirect:../roster";
     }
 
@@ -52,15 +57,24 @@ public class RosterController {
         modelAndView.addObject("status","Add new Roster");
         modelAndView.addObject("driverIdList",rosterService.getDriverIdList());
         modelAndView.addObject("busRouteIdList",rosterService.getBusRouteIdList());
+        modelAndView.addObject("driverId",0);
+        modelAndView.addObject("driverIdLB","Select driverId");
+        modelAndView.addObject("busRouteId",0);
+        modelAndView.addObject("busRouteIdLB","Select busRouteId");
         return modelAndView;
     }
 
     @RequestMapping(value = "/roster/edit",method = RequestMethod.GET)
-    public ModelAndView editRoster(){
+    public ModelAndView editRoster(@RequestParam int driverId,@RequestParam int busRouteId){
         ModelAndView modelAndView = new ModelAndView("view/AddOrEditRoster","command",new Roster());
         modelAndView.addObject("status","Edit Roster");
-        modelAndView.addObject("driverIdList",rosterService.getDriverIdList());
-        modelAndView.addObject("busRouteIdList",rosterService.getBusRouteIdList());
+        modelAndView.addObject("driverIdList",null);
+        modelAndView.addObject("busRouteIdList",null);
+        modelAndView.addObject("driverId",driverId);
+        modelAndView.addObject("driverIdLB",driverId);
+        modelAndView.addObject("busRouteId",busRouteId);
+        modelAndView.addObject("busRouteIdLB",busRouteId);
+        //modelAndView.addObject("disabled","disabled");
         return modelAndView;
     }
 

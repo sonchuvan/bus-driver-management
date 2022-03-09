@@ -36,6 +36,10 @@ public class RosterService {
         return rosterDAOImp.addNew(roster);
     }
 
+    public boolean updateRoster(Roster roster){
+        return rosterDAOImp.update(roster);
+    }
+
     public boolean deleteRoster(Roster roster){
         return rosterDAOImp.delete(roster);
     }

@@ -16,14 +16,14 @@
                 <div class="from-group">
                     <form:label path="driver.driverId">Driver Id </form:label>
                       <form:select path="driver.driverId" class="form-control col-6">
-                        <form:option value="0" label="Select driver id"/>
+                        <form:option value="${driverId}" label="${driverIdLB}"/>
                         <form:options items="${driverIdList}"/>
                       </form:select>
                   </div>
                   <div class="from-group">
                   <form:label path="busRoute.busRouteId">BusRoute Id </form:label>
-                    <form:select path="busRoute.busRouteId" class="form-control col-6">
-                      <form:option value="0" label="Select busRoute id"/>
+                    <form:select path="busRoute.busRouteId" class="form-control col-6" >
+                      <form:option value="${busRouteId}" label="${busRouteIdLB}"/>
                       <form:options items="${busRouteIdList}"/>
                     </form:select>
                   </div>
